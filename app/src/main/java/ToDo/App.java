@@ -3,12 +3,31 @@
  */
 package ToDo;
 
+import java.io.IOException;
+
 public class App {
-    public String getGreeting() {
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else {
+                System.out.print("\033\143");
+            }
+        } catch (IOException | InterruptedException ex) {}
+    }
+
+    public String displayMainMenu() {
+        String mainMenu = "\t\t\t\t\tMain Menu";
+
+
+        clearConsole();
+
+
         return "ToDo List Manager";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        System.out.println(new App().displayMainMenu());
     }
 }
