@@ -6,23 +6,39 @@ package ToDo;
 import java.io.IOException;
 
 public class App {
+    String newLine = System.getProperty("line.separator");
+
     public static void clearConsole() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            }
-            else {
+            } else {
                 System.out.print("\033\143");
             }
-        } catch (IOException | InterruptedException ex) {}
+        } catch (IOException | InterruptedException ex) {
+        }
     }
 
     public String displayMainMenu() {
-        String mainMenu = "\t\t\t\t\tMain Menu";
-
+        String mainMenu = "\t\t\t\t\tMain Menu"
+                .concat(newLine)
+                .concat(newLine)
+                .concat("1. Open ToDo List")
+                .concat(newLine)
+                .concat("2. Display ToDo Items")
+                .concat(newLine)
+                .concat("3. Edit To Do Item")
+                .concat(newLine)
+                .concat("4. Delete ToDo Item")
+                .concat(newLine)
+                .concat("5. Save ToDo List")
+                .concat(newLine)
+                .concat("6. Exit")
+                .concat(newLine)
+                .concat(newLine);
 
         clearConsole();
-
+        System.out.println(mainMenu);
 
         return "ToDo List Manager";
     }
