@@ -65,7 +65,7 @@ We will be working together to write a small program to manage a TODO list.  Usi
 * Menu Item 3: Edit ToDo Item
     1. Numbered list all items in single lines
     2. Allow for multiple pages of listed items (be creative in how you do this)
-    3. Allow user to scroll the list up and down by 1 or more lines (be creative ehre, too)
+    3. Allow user to scroll the list up and down by 1 or more lines (be creative there, too)
     4. Display format example
     ```
               Date      Time   Completed     Description
