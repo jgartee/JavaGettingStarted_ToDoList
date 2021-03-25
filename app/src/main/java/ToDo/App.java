@@ -3,160 +3,54 @@
  */
 package ToDo;
 
+import java.awt.*;
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-interface ToDoAction<T> {
-    int invoke();
-}
 
 public class App {
-    String newLine = System.getProperty("line.separator");
-    Stack<ToDoAction> actions = new Stack<>();
-    private String mainMenu = "\t\t\t\t\tMain Menu"
-            .concat(newLine)
-            .concat(newLine)
-            .concat("1. Open ToDo List")
-            .concat(newLine)
-            .concat("2. Display ToDo Items")
-            .concat(newLine)
-            .concat("3. Edit To Do Item")
-            .concat(newLine)
-            .concat("4. Delete ToDo Item")
-            .concat(newLine)
-            .concat("5. Save ToDo List")
-            .concat(newLine)
-            .concat("6. Exit")
-            .concat(newLine)
-            .concat(newLine);
-    private List<ToDoAction> mainMenuOptions = Arrays.asList(() -> displayOpenToDoListMenu(),
-            () -> displayShowToDoItemsMenu(),
-            () -> displayEditItemsMenu(),
-            () -> displayDeleteItemsMenu(),
-            () -> displaySaveToDoListMenu());
-    private String displayMenu = "\t\t\t\t\tDisplay ToDo List"
-            .concat(newLine)
-            .concat(newLine)
-            .concat("1. Show All Items")
-            .concat(newLine)
-            .concat("2. Show Completed Items")
-            .concat(newLine)
-            .concat("3. Show Incomplete Items")
-            .concat(newLine)
-            .concat("4. Return to Previous Menu")
-            .concat(newLine);
-
-    private String displayEditToDoItem = "\t\t\t\t\tDisplay ToDo List"
-            .concat(newLine)
-            .concat(newLine);
-
-    private String displayDeleteToDoItem = "\t\t\t\t\tDelete ToDo Item"
-            .concat(newLine)
-            .concat(newLine);
-
-    private String displaySaveToDoList = "\t\t\t\t\tSave ToDo List"
-            .concat(newLine)
-            .concat(newLine);
-
-    private String displayOpenToDoList = "\t\t\t\t\tOpen ToDo List"
-            .concat(newLine)
-            .concat(newLine);
+//    Screen mainScreen = new Screen("Main Menu", new HashMap<String, MenuItem>() {
+//        {
+//            put("1", new MenuItem("Open ToDo List", openToDoScreen));
+//            put("2", new MenuItem("Display ToDo Items", displayToDoItems));
+//            put("3", new MenuItem("Display ToDo Items", editToDoItem));
+//            put("4", new MenuItem("Display ToDo Items", deleteToDoItem));
+//            put("5", new MenuItem("Display ToDo Items", saveToDoItems));
+//            put("6", new MenuItem("Display ToDo Items", null));
+//        }
+//    }, true);
+//    Screen openToDoScreen = null;
+//    Screen displayToDoItems = new Screen("Display ToDo List", new HashMap<String, MenuItem>() {
+//        {
+//            put("1", new MenuItem("Show All Items", showAllItems));
+//            put("2", new MenuItem("Show Completed Items", showCompletedItems));
+//            put("3", new MenuItem("Show Incomplete Items", showIncompleteItems));
+//            put("4", new MenuItem("Return to Previous Menu", null));
+//        }
+//    }, true);
+//    Screen showAllItems = new Screen("All Items", new HashMap<String, MenuItem>(), false);
+//    Screen editToDoItem = null;
+//    Screen deleteToDoItem = null;
+//    Screen saveToDoItems = null;
+//
+//    Screen exitProgram = null;
+//    Screen showCompletedItems = new Screen("Completed Items", null, false);
+//    Screen showIncompleteItems = new Screen("Incomplete Items", null, false);
+//
+//    String newLine = System.getProperty("line.separator");
+//    Stack<Screen> screenStack = new Stack<>();
 
     public int run() {
-        int result = 0;
-
-        actions.push(() -> {
-            return invokeAction();
-        });
-
-        while (!actions.isEmpty() && result == 0)
-            result = actions.pop().invoke();
-
-        return result;
-    }
-
-    private int invokeAction() {
-        int rc = 0;
-
-        try {
-            rc = displayMainMenu();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return rc;
-    }
-
-    private int displayMainMenu() throws Exception {
-        int result = 0;
-        BufferedReader con = new BufferedReader((new InputStreamReader(System.in)));
-
-        clearConsole();
-        System.out.println(mainMenu);
-        int option = Integer.parseInt(con.readLine());
-
-        try {
-            if (option - 1 < mainMenuOptions.size() )
-                actions.push(mainMenuOptions.get(option - 1));
-        } catch (Exception exception) {
-            result = 1;
-        }
-
-        return result;
-    }
-
-    private int displayListItemsMenu() {
-
-        clearConsole();
-
-        return 0;
-    }
-
-    private int displayShowToDoItemsMenu() {
-        clearConsole();
-        System.out.println(displayMenu);
-        return 0;
-    }
-
-    private int displayOpenToDoListMenu() {
-
-        clearConsole();
-
-        return 0;
-    }
-
-    private int displaySaveToDoListMenu() {
-
-        clearConsole();
-
-        return 0;
-    }
-
-    private int displayEditItemsMenu() {
-        clearConsole();
-        System.out.println(displayMenu);
-
-        return 0;
-    }
-
-    private int displayDeleteItemsMenu() {
-        String displayMenu = "\t\t\t\t\tDisplay ToDo List"
-                .concat(newLine)
-                .concat(newLine)
-                .concat("1. Show All Items")
-                .concat(newLine)
-                .concat("2. Show Completed Items")
-                .concat(newLine)
-                .concat("3. Show Incomplete Items")
-                .concat(newLine)
-                .concat("4. Return to Previous Menu")
-                .concat(newLine);
-
-        clearConsole();
-        System.out.println(displayMenu);
+//        Screen nextScreen = mainScreen;
+//        screenStack.push(mainScreen);
+//
+//        while (!screenStack.isEmpty()) {
+//
+//            nextScreen.display();
+//            break;
+//
 
         return 0;
     }
@@ -178,9 +72,16 @@ public class App {
     }
 
     public static void main(String[] args) {
-        App app = new App();
-        int result = app.run();
+       // App app = new App();
+        displayMainScreen();
+        //int result = app.run();
 
-        System.exit(result);
+//        System.exit(result);
+    }
+    static public void displayMainScreen(){
+        System.out.println("                          To Do List Manager");
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println("1.   Open ToDo List");
     }
 }
