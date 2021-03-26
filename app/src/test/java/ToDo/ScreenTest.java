@@ -1,11 +1,9 @@
 package ToDo;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -92,18 +90,10 @@ public class ScreenTest {
 
     @Test
 
-    public void shouldDisplayNextScreenWhenPresentOnMenuItem() {
+    public void shouldAllowSelectionOfAValidOption() {
         String newLine = System.getProperty("line.separator");
-        HashMap<String, MenuItem> screenTwoMenuItems = new HashMap<String, MenuItem>() {{
-            put("1", new MenuItem("Screen Two MenuItem One", null));
-            put("2", new MenuItem("Screen Two MenuItem Two", null));
-            put("3", new MenuItem("Screen Two MenuItem Three", null));
-
-        }};
-        Screen screenTwo = new Screen("MenuItemOne Called Screen",
-                screenTwoMenuItems, false);
         HashMap<String, MenuItem> screenOneMenuItems = new HashMap<String, MenuItem>() {{
-            put("1", new MenuItem("MenuItemOne", screenTwo));
+            put("1", new MenuItem("MenuItemOne", null));
             put("2", new MenuItem("MenuItemTwo", null));
             put("3", new MenuItem("MenuItemThree", null));
         }};
@@ -114,23 +104,49 @@ public class ScreenTest {
             }
 
             @Override
-            public Screen selectOption() {
-                return super.selectOption();
+            public String selectOption() {
+                return "1";
             }
 
         };
-        Screen ScreenTwo = new Screen("Screen Two Header", screenTwoMenuItems, true) {
-            @Override
-            protected void consoleWrite(String output) {
-                linesOut.add(output);
-            }
-        };
-
         linesOut.clear();
 
         screenOne.displayMenu();
-        Screen screenOneSelection = screenOne.selectOption();
 
-        assertEquals(Object.class.getTypeName(), screenOneSelection.getClass().getTypeName());
+        assertEquals("1", screenOne.selectOption());
+    }
+
+    boolean firstTime = true;
+    @Test
+    public void shouldWriteErrorMessageIfInvalidOptionSelected(){
+        String newLine = System.getProperty("line.separator");
+        HashMap<String, MenuItem> screenOneMenuItems = new HashMap<String, MenuItem>() {{
+            put("1", new MenuItem("MenuItemOne", null));
+            put("2", new MenuItem("MenuItemTwo", null));
+            put("3", new MenuItem("MenuItemThree", null));
+        }};
+        Screen screenOne = new Screen("Screen One Header", screenOneMenuItems, true) {
+            @Override
+            protected void consoleWrite(String outPut) {
+                linesOut.add(outPut);
+            }
+
+            @Override
+            public String selectOption() {
+                if(firstTime) {
+                    firstTime = false;
+                    return "4";
+                }
+
+                return "1";
+            }
+        };
+        linesOut.clear();
+
+        screenOne.displayMenu();
+
+        String actual = screenOne.selectOption();
+        assertEquals("1", actual);
+        assertTrue(linesOut.contains("Invalid Option Selected...try again."));
     }
 }

@@ -93,16 +93,19 @@ public class Screen {
 //        System.out.println(menu);
 //    }
 //
-    public Screen selectOption() {
+    public String selectOption() {
         Scanner scanner = new Scanner(System.in);
-        String option = scanner.nextLine();
-        Screen nextScreen = null;
+        String option = "";
 
-        if (menuItems.containsKey(option)) {
-            nextScreen = menuItems.get(option).getNextScreen();
-        }
+        do{
+            option = scanner.nextLine();
 
-        return nextScreen;
+            if(!menuItems.containsKey(option)){
+                consoleWrite("Invalid Option Selected...try again.");
+            }
+        } while(!menuItems.containsKey(option));
+
+        return option;
     }
 
     public int clearConsole() {
