@@ -2,14 +2,14 @@ package ToDo;
 
 public class MenuItem {
     private final String linePrompt;
-    private final Screen nextScreen;
+    private final MenuScreen nextScreen;
 
-    public MenuItem(String linePrompt, Screen nextScreen){
+    public MenuItem(String linePrompt, MenuScreen nextScreen){
 
         this.linePrompt = linePrompt;
         this.nextScreen = nextScreen;
     }
-    public Screen getNextScreen(){
+    public MenuScreen getNextScreen(){
         return nextScreen;
     }
     public String getLinePrompt(){
