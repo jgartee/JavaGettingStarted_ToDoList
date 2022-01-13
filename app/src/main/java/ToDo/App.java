@@ -11,35 +11,35 @@ import java.util.*;
 
 
 public class App {
-//    Screen mainScreen = new Screen("Main Menu", new HashMap<String, MenuItem>() {
-//        {
-//            put("1", new MenuItem("Open ToDo List", openToDoScreen));
-//            put("2", new MenuItem("Display ToDo Items", displayToDoItems));
-//            put("3", new MenuItem("Display ToDo Items", editToDoItem));
-//            put("4", new MenuItem("Display ToDo Items", deleteToDoItem));
-//            put("5", new MenuItem("Display ToDo Items", saveToDoItems));
-//            put("6", new MenuItem("Display ToDo Items", null));
-//        }
-//    }, true);
-//    Screen openToDoScreen = null;
-//    Screen displayToDoItems = new Screen("Display ToDo List", new HashMap<String, MenuItem>() {
-//        {
-//            put("1", new MenuItem("Show All Items", showAllItems));
-//            put("2", new MenuItem("Show Completed Items", showCompletedItems));
-//            put("3", new MenuItem("Show Incomplete Items", showIncompleteItems));
-//            put("4", new MenuItem("Return to Previous Menu", null));
-//        }
-//    }, true);
-//    Screen showAllItems = new Screen("All Items", new HashMap<String, MenuItem>(), false);
-//    Screen editToDoItem = null;
-//    Screen deleteToDoItem = null;
-//    Screen saveToDoItems = null;
-//
-//    Screen exitProgram = null;
-//    Screen showCompletedItems = new Screen("Completed Items", null, false);
-//    Screen showIncompleteItems = new Screen("Incomplete Items", null, false);
-//
-//    String newLine = System.getProperty("line.separator");
+    Screen mainScreen = new MenuScreen("Main Menu", new HashMap<String, MenuItem>() {
+        {
+            put("1", new MenuItem("Open ToDo List", openToDoScreen));
+            put("2", new MenuItem("Display ToDo Items", displayToDoItems));
+            put("3", new MenuItem("Display ToDo Items", editToDoItem));
+            put("4", new MenuItem("Display ToDo Items", deleteToDoItem));
+            put("5", new MenuItem("Display ToDo Items", saveToDoItems));
+            put("6", new MenuItem("Display ToDo Items", null));
+        }
+    }, true);
+    Screen openToDoScreen = null;
+    Screen displayToDoItems = new MenuScreen("Display ToDo List", new HashMap<String, MenuItem>() {
+        {
+            put("1", new MenuItem("Show All Items", showAllItems));
+            put("2", new MenuItem("Show Completed Items", showCompletedItems));
+            put("3", new MenuItem("Show Incomplete Items", showIncompleteItems));
+            put("4", new MenuItem("Return to Previous Menu", null));
+        }
+    }, true);
+    Screen showAllItems = new MenuScreen("All Items", new HashMap<String, MenuItem>(), false);
+    Screen editToDoItem = null;
+    Screen deleteToDoItem = null;
+    Screen saveToDoItems = null;
+
+    Screen exitProgram = null;
+    Screen showCompletedItems = new MenuScreen("Completed Items", null, false);
+    Screen showIncompleteItems = new MenuScreen("Incomplete Items", null, false);
+
+    String newLine = System.getProperty("line.separator");
 //    Stack<Screen> screenStack = new Stack<>();
 
     public int run() {
@@ -50,7 +50,6 @@ public class App {
 //
 //            nextScreen.display();
 //            break;
-//
 
         return 0;
     }
@@ -72,11 +71,12 @@ public class App {
     }
 
     public static void main(String[] args) {
-       // App app = new App();
-        displayMainScreen();
-        //int result = app.run();
-
+//        App app = new App();
+//        //displayMainScreen();
+//        int result = app.run();
+//
 //        System.exit(result);
+        System.out.println("Hello");
     }
     static public void displayMainScreen(){
         System.out.println("                          To Do List Manager");

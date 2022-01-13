@@ -1,8 +1,6 @@
 package ToDo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MenuScreen implements Screen {
     private final String header;
@@ -92,7 +90,7 @@ public class MenuScreen implements Screen {
 
         } while(!menuItems.containsKey(option));
 
-        MenuScreen nextScreen = menuItems.get(option).getNextScreen();
+        Screen nextScreen = menuItems.get(option).getNextScreen();
 
         if(nextScreen == null)
             return;

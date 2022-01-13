@@ -1,9 +1,13 @@
 package ToDo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,6 +15,17 @@ public class MenuScreenTest {
     ArrayList<String> screenOneOutputLines = new ArrayList<>();
     ArrayList<String> screenTwoOutputLines = new ArrayList<>();
 
+    @Test
+    public void createJsonObjectFromObject(){
+        Task myTask = new Task("fred", LocalDate.of(2021,01,01),true,false);
+        ObjectMapper mapper = new ObjectMapper();
+        String myObj = null;
+        try {
+            myObj = mapper.writeValueAsString(myTask);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void shouldClearScreenBeforeWritingHeaderToTheConsole() {
         MenuScreen myScreen = new MenuScreen("MyHeader", new HashMap<String, MenuItem>(), false) {
